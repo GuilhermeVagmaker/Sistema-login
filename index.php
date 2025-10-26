@@ -4,7 +4,11 @@ require_once __DIR__ . '/core/Route.php';
 
 // ROTAS GET
 Route::get('/', function() {
-    require __DIR__ . '/paginas/pgLogin.php';
+    require __DIR__ . '/paginas/pgIndex.php';
+});
+
+Route::get('/index', function() {
+    require __DIR__ . '/paginas/pgIndex.php';
 });
 
 Route::get('/login', function() {
@@ -25,8 +29,7 @@ Route::post('/login', function() {
 });
 
 Route::post('/registrar', function() {
-    require __DIR__ . '/Actions/registraAction.php';
+    require __DIR__ . '/Actions/registroAction.php';
 });
 
 Route::dispatch();
- 

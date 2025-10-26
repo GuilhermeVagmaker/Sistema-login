@@ -11,8 +11,17 @@
 <body>
   <main class="d-flex justify-content-center align-items-center vh-100">
 
-  <form class="d-grid text-center border border-black
-  border-success mb-2 border-opacity-25 rounded contene" method="POST" action="/Actions/registraAction.php">
+    
+
+    <form class="d-grid text-center border border-black
+    border-success mb-2 border-opacity-25 rounded contene" method="POST" action="/registrar">
+
+      <h1 class="text-center">Create Account</h1> 
+      
+      <div class="d-grid">
+        <label for="nome" class="d-grid justify-content-start">nome:</label>
+        <input class="input-size Myborder border border-success p-2 mb-2 border-opacity-75 border-dark-subtle rounded-2" type="text" name="nome" id="nome" placeholder="Digite seu nome" required>
+      </div>
 
       <div class="d-grid">
         <label for="email" class="d-grid justify-content-start">Email:</label>
@@ -20,11 +29,15 @@
       </div>
 
       <div class="d-grid">
-        <label for="password"  class="d-grid justify-content-start">Password:</label>
-        <input class="input-size Myborder border border-success p-2 mb-2 border-opacity-75 border-dark-subtle rounded-2" type="password" name="password" id="password" placeholder="enter your password" required>
+        <label for="senha"  class="d-grid justify-content-start">Senha:</label>
+        <input class="input-size Myborder border border-success p-2 mb-2 border-opacity-75 border-dark-subtle rounded-2" type="password" name="senha" id="senha" placeholder="Digite uma senha" required>
       </div>
-         <button type="submit" class="btn btn-primary mt-3">Create account</button>
-      
+
+         <button type="submit" class="btn btn-primary mt-3 mb-2">Create account</button>
+
+      <?php if(isset($_GET['error'])): ?>
+      <div class="alert alert-danger">Preencha todos os campos corretamente ou email já cadastrado.</div>
+    <?php endif; ?>
     </form>
 
   </main>

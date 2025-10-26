@@ -1,20 +1,31 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+require_once __DIR__ . '/../config/Conexao.php';
+require_once __DIR__ . '/../Classes/Usuario.php';
 
-require_once 'Usuario.php';
 session_start();
 
-if($_SERVER['REQUEST_METHOD'] === "POST"){
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Location: /login');
+    exit;
+}
 
-  $email = $_POST['email'];
-  $senha = $_POST['senha'];
-  
+$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+$senha = filter_input(INPUT_POST, 'senha', FILTER_UNSAFE_RAW);
 
-  $user = new Usuario();
+if (!$email || !$senha) {
+    header('Location: /login?error=1');
+    exit;
+}
 
-  if($user->login($email, $senha)){
-    echo "Login efetuado com sucesso!!";
-  }else{
-    echo "Email ou senha esta incorreta!!";
-  }
+$user = new Usuario();
 
+if ($user->login($email, $senha)) {
+    header('Location: /index');
+    exit;
+} else {
+    header('Location: /login?error=2');
+    exit;
 }

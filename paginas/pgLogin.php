@@ -11,7 +11,12 @@
 <body>
   <main class="d-flex justify-content-center align-items-center vh-100">
 
-    <form action="/Actions/loginAction.php" class="d-grid text-center border border-black
+  <?php if(isset($_GET['error'])): ?>
+      <div class="alert alert-danger">Credenciais inválidas. Tente novamente.</div>
+    <?php elseif(isset($_GET['created'])): ?>
+      <div class="alert alert-success">Conta criada com sucesso. Faça login.</div>
+    <?php endif; ?>
+<form action="/login" method="POST" class="d-grid text-center border border-black
     border-success mb-2 border-opacity-25 rounded contene">
 
       <h1 class="text-center">Login</h1>
@@ -21,8 +26,8 @@
       </div>
 
       <div class="d-grid">
-        <label for="password"  class="d-grid justify-content-start">Password:</label>
-        <input class="input-size Myborder border border-success p-2 mb-2 border-opacity-75 border-dark-subtle rounded-2" type="password" name="password" id="password" placeholder="enter your password" required>
+        <label for="senha"  class="d-grid justify-content-start">Password:</label>
+        <input class="input-size Myborder border border-success p-2 mb-2 border-opacity-75 border-dark-subtle rounded-2" type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
       </div>
 
       <div class="d-flex align-items-center justify-content-between justify-content-center saveLogin">
@@ -31,12 +36,12 @@
           <label class="form-check-label save" for="checkDefault">Save login</label>
         </div>
 
-        <div><a href="confirmEmail.html" class="link"> forget password</a></div>
+        <div><a href="/confirmEmail.html" class="link"> forget password</a></div>
       </div>
 
       <button type="submit" class="btn btn-primary mt-3">Enter</button>
 
-        <div class="mt-3" >Create an account <a href="pgCriarLogin.php" class="link">here</a></div>
+        <div class="mt-3" >Create an account <a href="/criar" class="link">here</a></div>
     </form>
 
   </main>
